@@ -25,6 +25,23 @@ checked, not so it can be deployed.
 | Memory fraction | 0.88, tensor parallel size 1 |
 | Wheels | [`mgschwind/fleetwide-nvfp4-t4-wheelhouse`](https://huggingface.co/datasets/mgschwind/fleetwide-nvfp4-t4-wheelhouse), SHA256-pinned |
 
+## Trying other checkpoints
+
+The model is set in one place — the environment block in the second cell — and any NVFP4 checkpoint
+vLLM can load will work. Two are commented there:
+
+- [`nvidia/NVIDIA-Nemotron-3-Nano-4B-NVFP4`](https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-4B-NVFP4),
+  same architecture family, quicker on a T4
+- [`mgoin/Qwen3-0.6B-NVFP4`](https://huggingface.co/mgoin/Qwen3-0.6B-NVFP4), smaller still, and with
+  no recurrent layers it needs no mamba wheels
+
+`MODEL_QUANT` exists because a checkpoint may or may not declare its own quantization. The Nemotron
+checkpoints carry no `quantization_config`, so `modelopt_mixed` has to be named; the Qwen one is
+compressed-tensors at `nvfp4-pack-quantized` and declares its own, so it takes `compressed-tensors`.
+
+Nothing in the notebook is tuned to a particular checkpoint. What limits the choice is the T4's
+16 GB and the free Colab session, not the format.
+
 Prebuilt wheels are used because building vLLM from source exceeds the free T4 allocation in Colab.
 The notebook starts the model download in the background and pins every version it installs, so a
 rerun either reproduces or fails loudly.
