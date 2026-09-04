@@ -1,7 +1,9 @@
 nvfp4-on-turing
-Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 
 SPDX-License-Identifier: Apache-2.0
+SPDX-FileCopyrightText: Copyright contributors to the nvfp4-on-turing project
+
+Copyright (c) 2026 Michael Gschwind
 
 This repository contains a Jupyter notebook that configures and runs vLLM
 (https://github.com/vllm-project/vllm), licensed under the Apache License 2.0.
