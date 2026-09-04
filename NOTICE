@@ -1,0 +1,14 @@
+nvfp4-on-turing
+Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+SPDX-License-Identifier: Apache-2.0
+
+This repository contains a Jupyter notebook that configures and runs vLLM
+(https://github.com/vllm-project/vllm), licensed under the Apache License 2.0.
+
+The notebook serves nvidia/NVIDIA-Nemotron-Nano-9B-v2-NVFP4 and installs
+prebuilt wheels from the Hugging Face dataset
+mgschwind/fleetwide-nvfp4-t4-wheelhouse. Both carry their own licenses and
+neither is redistributed here.
+
+This is a proof of concept and not a supported configuration.
