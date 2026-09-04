@@ -14,7 +14,7 @@ checked, not so it can be deployed.
 
 | | |
 |---|---|
-| Part | NVIDIA T4, compute capability 7.5, 16 GB |
+| Part | NVIDIA T4, compute capability 7.5, 16 GB card --- 14.56 GiB visible to vLLM in this run |
 | Checkpoint | [`nvidia/NVIDIA-Nemotron-Nano-9B-v2-NVFP4`](https://huggingface.co/nvidia/NVIDIA-Nemotron-Nano-9B-v2-NVFP4) |
 | Quantization | `modelopt_mixed` |
 | Activation dtype | `float16` — Turing has no BF16 |
@@ -40,7 +40,7 @@ checkpoints carry no `quantization_config`, so `modelopt_mixed` has to be named;
 compressed-tensors at `nvfp4-pack-quantized` and declares its own, so it takes `compressed-tensors`.
 
 Nothing in the notebook is tuned to a particular checkpoint. What limits the choice is the T4's
-16 GB and the free Colab session, not the format.
+14.56 GiB and the free Colab session, not the format.
 
 Prebuilt wheels are used because building vLLM from source exceeds the free T4 allocation in Colab.
 The notebook starts the model download in the background and pins every version it installs, so a
@@ -51,6 +51,9 @@ rerun either reproduces or fails loudly.
 It shows that the format carries no hardware assumption: a checkpoint stored at 4 bits serves
 correctly on an architecture five generations older than the one that executes 4 bits natively. The
 sanity check asks for the capital of Austria and gets `Vienna`.
+
+In this run the weights peak at 7.38 GiB, leaving 3.04 GiB of KV cache, which the engine sizes at
+9,728 tokens.
 
 It shows nothing about performance. There is no load sweep, no matched pair, and no throughput
 measurement, and the settings — a 512-token limit, one sequence at a time — are chosen to fit a free
