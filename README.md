@@ -1,5 +1,11 @@
 # NVFP4 on Turing
 
+> **`vllm028` application-test branch:** the notebook is reset to run upstream
+> vLLM 0.28.0 with Torch 2.13/CUDA 13 on a Colab T4. It has no captured result
+> yet, and checksum enforcement is intentionally deferred until after the run.
+> [Open the test notebook in Colab](https://colab.research.google.com/github/mikekg/nvfp4-on-turing/blob/vllm028/nvfp4-turing-t4-colab.ipynb).
+> The validated results described below are from the original `main` run.
+
 An NVFP4 checkpoint served on a Turing T4, in a Colab notebook.
 
 Turing is compute capability 7.5. It has no FP4 tensor cores, no FP8 tensor cores, and no BF16 —
